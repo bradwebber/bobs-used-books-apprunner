@@ -4,6 +4,8 @@ build:
   commands:    
     build:
       - dotnet publish -c Release -o out
+    post-build:
+      - WORKDIR '/out'
 run:                              
   command: dotnet Bookstore.Web.dll
   network:
@@ -12,5 +14,5 @@ run:
   env:
     - name: ASPNETCORE_ENVIRONMENT
       value: "Development"
-    - name: "BookstoreDbDefaultConnection"
+    - name: "ConnectionStrings:BookstoreDbDefaultConnection"
       value: "Server=bobsbookstoredatabase.cuvj7mm10n3q.us-east-1.rds.amazonaws.com,1433; Database=BobsUsedBookStore;User Id=admin;Password=f9bjMyxe=fBJnQxRyvyc^fMkjiVwCo;"
