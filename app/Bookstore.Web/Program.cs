@@ -3,9 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Bookstore.Web.Startup;
 using System;
 
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.UseContentRoot(AppContext.BaseDirectory);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions() { Args = args, ContentRootPath = AppContext.BaseDirectory });
 
 builder.ConfigureConfiguration();
 
