@@ -4,8 +4,6 @@ build:
   commands:    
     build:
       - dotnet publish -c Release -o out
-    post-build:
-      - cd out
 run:                              
   command: dotnet Bookstore.Web.dll
   network:
