@@ -3,9 +3,7 @@ runtime: dotnet6
 build:
   commands:    
     build:
-      - dotnet publish -c Release -o out
-    post-build:
-      - WORKDIR '/out'
+      - dotnet publish -c Release -o app
 run:                              
   command: dotnet Bookstore.Web.dll
   network:
