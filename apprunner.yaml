@@ -7,7 +7,7 @@ build:
 run:                              
   command: dotnet out/Bookstore.Web.dll
   network:
-    port: 443
+    port: 80
     env: APP_PORT
   env:
     - name: ASPNETCORE_ENVIRONMENT
@@ -15,4 +15,4 @@ run:
     - name: "ConnectionStrings:BookstoreDbDefaultConnection"
       value: "Server=bobsbookstoredatabase.cuvj7mm10n3q.us-east-1.rds.amazonaws.com,1433; Database=BobsUsedBookStore;User Id=admin;Password=f9bjMyxe=fBJnQxRyvyc^fMkjiVwCo;"
     - name: ASPNETCORE_URLS
-      value: "https://+:443"
+      value: "http://+:80"
