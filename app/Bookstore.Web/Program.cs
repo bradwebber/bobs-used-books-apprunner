@@ -11,16 +11,24 @@ Console.WriteLine($"Content Root Path: {options.ContentRootPath}");
 Console.WriteLine($"Web Root Path: {options.WebRootPath}");
 Console.WriteLine($"Environment: {options.EnvironmentName}");
 
-builder.ConfigureConfiguration();
+try
+{
+    builder.ConfigureConfiguration();
 
-builder.ConfigureServices();
+    builder.ConfigureServices();
 
-builder.ConfigureAuthentication();
+    builder.ConfigureAuthentication();
 
-builder.ConfigureDependencyInjection();
+    builder.ConfigureDependencyInjection();
 
-var app = builder.Build();
+    var app = builder.Build();
 
-await app.ConfigureMiddlewareAsync();
+    await app.ConfigureMiddlewareAsync();
 
-app.Run();
+    app.Run();
+}
+catch (Exception ex)
+{
+    Console.Write(ex.ToString());
+	throw;
+}
