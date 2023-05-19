@@ -7,7 +7,7 @@ namespace Bookstore.Web.Startup
     {
         public static WebApplicationBuilder ConfigureConfiguration(this WebApplicationBuilder builder)
         {
-            builder.Configuration.AddSystemsManager("/BobsBookstore/", optional: true);
+            builder.Configuration.AddSystemsManager("/BobsBookstore/");
 
             return builder;
         }
