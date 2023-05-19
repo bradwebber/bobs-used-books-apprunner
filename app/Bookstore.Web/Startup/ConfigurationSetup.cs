@@ -15,6 +15,9 @@ namespace Bookstore.Web.Startup
                 Console.WriteLine("AddSystemsManager(builder.Configuration, \"/BobsBookstore/\");");
                 AddSystemsManager(builder.Configuration, "/BobsBookstore/");
 
+                Console.WriteLine($"Connection String: { builder.Configuration.GetConnectionString("BookstoreDbDefaultConnection") }");
+
+                Console.WriteLine("return builder");
                 return builder;
             }
             catch (Exception ex)
@@ -27,13 +30,16 @@ namespace Bookstore.Web.Startup
 
         public static IConfigurationBuilder AddSystemsManager(IConfigurationBuilder builder, string path)
         {
-            Console.WriteLine("Enter AddSystemsManager(IConfigurationBuilder builder, string path)");
+            Console.WriteLine("Entered AddSystemsManager(IConfigurationBuilder builder, string path)");
 
+            Console.WriteLine("if (path == null)");
             if (path == null)
             {
+                Console.WriteLine("throw new ArgumentNullException(\"path\");");
                 throw new ArgumentNullException("path");
             }
 
+            Console.WriteLine("return AddSystemsManager(builder, ConfigureSource(path, null));");
             return AddSystemsManager(builder, ConfigureSource(path, null));
         }
 
@@ -79,7 +85,7 @@ namespace Bookstore.Web.Startup
 
         private static Action<SystemsManagerConfigurationSource> ConfigureSource(string path, AWSOptions awsOptions, bool optional = false, TimeSpan? reloadAfter = null)
         {
-            Console.WriteLine("Entered Action<SystemsManagerConfigurationSource> ConfigureSource(string path, AWSOptions awsOptions, bool optional = false, TimeSpan? reloadAfter = null)");
+            Console.WriteLine("Entered ConfigureSource(string path, AWSOptions awsOptions, bool optional = false, TimeSpan? reloadAfter = null)");
 
             Console.WriteLine("return delegate (SystemsManagerConfigurationSource configurationSource)");
             return delegate (SystemsManagerConfigurationSource configurationSource)
@@ -93,7 +99,7 @@ namespace Bookstore.Web.Startup
 
         private static AWSOptions GetAwsOptions(IConfigurationBuilder builder)
         {
-            Console.WriteLine("Entered AWSOptions GetAwsOptions(IConfigurationBuilder builder)");
+            Console.WriteLine("Entered GetAwsOptions(IConfigurationBuilder builder)");
 
             Console.WriteLine("if (builder.Properties.TryGetValue(\"AWS_CONFIGBUILDER_AWSOPTIONS\", out var value))");
             if (builder.Properties.TryGetValue("AWS_CONFIGBUILDER_AWSOPTIONS", out var value))
