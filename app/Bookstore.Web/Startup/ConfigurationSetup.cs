@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Bookstore.Web.Startup
 {
@@ -7,9 +8,18 @@ namespace Bookstore.Web.Startup
     {
         public static WebApplicationBuilder ConfigureConfiguration(this WebApplicationBuilder builder)
         {
-            builder.Configuration.AddSystemsManager("/BobsBookstore/");
+            try
+            {
+                builder.Configuration.AddSystemsManager("/BobsBookstore/");
 
-            return builder;
+                return builder;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+
+                throw;
+            }            
         }
     }
 }
