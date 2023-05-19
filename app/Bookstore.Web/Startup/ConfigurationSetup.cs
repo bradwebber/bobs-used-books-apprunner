@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Bookstore.Web.Startup
@@ -10,7 +11,10 @@ namespace Bookstore.Web.Startup
         {
             try
             {
+                Console.WriteLine("Before AddSystemsManager");
+                builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
                 builder.Configuration.AddSystemsManager("/BobsBookstore/");
+                Console.WriteLine("After AddSystemsManager");
 
                 return builder;
             }
