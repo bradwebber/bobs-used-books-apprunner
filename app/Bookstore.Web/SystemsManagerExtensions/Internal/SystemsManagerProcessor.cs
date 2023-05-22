@@ -53,8 +53,9 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
         {
             Console.WriteLine("Entered GetParametersByPathAsync()");
 
-            Console.WriteLine(Source.AwsOptions.ToJson());
+            Console.WriteLine($"AWS Options Profile: {Source.AwsOptions.Profile}");
 
+            Console.WriteLine("AddPrefix(IDictionary<string, string> input, string prefix)");
             using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())
             {
                 if (client is AmazonSimpleSystemsManagementClient impl)
