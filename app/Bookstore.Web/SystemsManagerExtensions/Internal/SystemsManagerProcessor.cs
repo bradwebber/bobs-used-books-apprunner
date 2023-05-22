@@ -54,24 +54,32 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
             Console.WriteLine("Entered GetParametersByPathAsync()");
 
             Console.WriteLine($"AWS Options Profile: {Source.AwsOptions.Profile}");
-
-            Console.WriteLine("AddPrefix(IDictionary<string, string> input, string prefix)");
+                        
             using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())
             {
+                Console.WriteLine("using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())");
+
                 if (client is AmazonSimpleSystemsManagementClient impl)
                 {
                     impl.BeforeRequestEvent += ServiceClientAppender.ServiceClientBeforeRequestEvent;
+                    Console.WriteLine("impl.BeforeRequestEvent += ServiceClientAppender.ServiceClientBeforeRequestEvent;");
                 }
 
                 var parameters = new List<Parameter>();
                 string nextToken = null;
+
                 do
                 {
                     var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);
+                    Console.WriteLine("var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);");
+                    
                     nextToken = response.NextToken;
-                    parameters.AddRange(response.Parameters);
+                    Console.WriteLine("nextToken = response.NextToken;");
 
-                    Console.WriteLine(response.Parameters.Select(x => x.Name).ToArray());
+                    parameters.AddRange(response.Parameters);
+                    Console.WriteLine("parameters.AddRange(response.Parameters);");
+
+                    Console.WriteLine($"Parameters: {response.Parameters.Select(x => x.Name).ToArray()}");
 
                 } while (!string.IsNullOrEmpty(nextToken));
 
