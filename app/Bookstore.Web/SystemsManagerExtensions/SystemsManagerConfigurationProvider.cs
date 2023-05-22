@@ -62,6 +62,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager
         /// <param name="systemsManagerProcessor">The <see cref="ISystemsManagerProcessor"/> used to retrieve values from AWS Systems Manager</param>
         public SystemsManagerConfigurationProvider(ISystemsManagerConfigurationSource source, ISystemsManagerProcessor systemsManagerProcessor)
         {
+            Console.WriteLine("Entered SystemsManagerConfigurationProvider(ISystemsManagerConfigurationSource source, ISystemsManagerProcessor systemsManagerProcessor)");
+
             Source = source ?? throw new ArgumentNullException(nameof(source));
             SystemsManagerProcessor = systemsManagerProcessor ?? throw new ArgumentNullException(nameof(systemsManagerProcessor));
 
@@ -100,6 +102,7 @@ namespace Amazon.Extensions.Configuration.SystemsManager
         /// </summary>
         public void WaitForReloadToComplete(TimeSpan timeout)
         {
+            Console.WriteLine("Entered WaitForReloadToComplete(TimeSpan timeout)");
             ReloadTaskEvent.WaitOne(timeout);
         }
 
@@ -113,6 +116,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager
         // all exceptions raised during OnReload() will be ignored.
         private async Task LoadAsync(bool reload)
         {
+            Console.WriteLine("Entered Task LoadAsync(bool reload)");
+
             try
             {
                 var newData = await SystemsManagerProcessor.GetDataAsync().ConfigureAwait(false) ?? new Dictionary<string, string>();
