@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using NuGet.Protocol;
 
 namespace Amazon.Extensions.Configuration.SystemsManager.Internal
 {
@@ -51,6 +52,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
         private async Task<IDictionary<string, string>> GetParametersByPathAsync()
         {
             Console.WriteLine("Entered GetParametersByPathAsync()");
+
+            Console.WriteLine(Source.AwsOptions.ToJson());
 
             using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())
             {
