@@ -66,6 +66,9 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
                     var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);
                     nextToken = response.NextToken;
                     parameters.AddRange(response.Parameters);
+
+                    Console.WriteLine(response.Parameters.Select(x => x.Name).ToArray());
+
                 } while (!string.IsNullOrEmpty(nextToken));
 
                 return AddPrefix(Source.ParameterProcessor.ProcessParameters(parameters, Source.Path), Source.Prefix);
@@ -94,6 +97,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
 
         public static IDictionary<string, string> AddPrefix(IDictionary<string, string> input, string prefix)
         {
+            Console.WriteLine("Entered AddPrefix(IDictionary<string, string> input, string prefix)");
+
             return string.IsNullOrEmpty(prefix)
                 ? input
                 : input.ToDictionary(pair => $"{prefix}{ConfigurationPath.KeyDelimiter}{pair.Key}", pair => pair.Value, StringComparer.OrdinalIgnoreCase);
