@@ -20,7 +20,7 @@ namespace Bookstore.Web.Startup
                 x.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
 
-            builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+            //builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
             builder.Services.AddAWSService<IAmazonS3>();
             builder.Services.AddAWSService<IAmazonRekognition>();
 

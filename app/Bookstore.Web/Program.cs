@@ -4,7 +4,8 @@ using Bookstore.Web.Startup;
 using System;
 using System.IO;
 using Serilog;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().CreateLogger();
 
@@ -14,6 +15,8 @@ try
     var builder = WebApplication.CreateBuilder(options);
 
     builder.Host.UseSerilog();
+
+    builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 
     builder.ConfigureConfiguration();
 
