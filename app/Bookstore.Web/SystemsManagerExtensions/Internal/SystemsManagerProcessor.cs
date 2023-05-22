@@ -76,6 +76,12 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
                     Console.WriteLine($"Filters: {Source.Filters}");
                     Console.WriteLine($"Next token: {nextToken}");
 
+                    var describeResponse = await client.DescribeParametersAsync(new DescribeParametersRequest { });
+                    Console.WriteLine("var describeResponse = await client.DescribeParametersAsync(new DescribeParametersRequest { });");
+
+                    describeResponse.Parameters.ForEach(x => Console.WriteLine(x.Name));
+                    Console.WriteLine("describeResponse.Parameters.ForEach(x => Console.WriteLine(x.Name));");
+
                     var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);
                     Console.WriteLine("var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);");
                     
