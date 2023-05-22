@@ -54,6 +54,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
             Console.WriteLine("Entered GetParametersByPathAsync()");
 
             Console.WriteLine($"AWS Options Profile: {Source.AwsOptions.Profile}");
+            Console.WriteLine($"AWS Options Region: {Source.AwsOptions.Region}");
+            Console.WriteLine($"Session Role ARN: {Source.AwsOptions.SessionRoleArn}");
                         
             using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())
             {
@@ -70,6 +72,10 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
 
                 do
                 {
+                    Console.WriteLine($"Path: {Source.Path}");
+                    Console.WriteLine($"Filters: {Source.Filters}");
+                    Console.WriteLine($"Next token: {nextToken}");
+
                     var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);
                     Console.WriteLine("var response = await client.GetParametersByPathAsync(new GetParametersByPathRequest { Path = Source.Path, Recursive = true, WithDecryption = true, NextToken = nextToken, ParameterFilters = Source.Filters }).ConfigureAwait(false);");
                     
