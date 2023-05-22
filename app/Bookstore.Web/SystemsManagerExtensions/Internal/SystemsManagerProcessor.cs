@@ -50,6 +50,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
 
         private async Task<IDictionary<string, string>> GetParametersByPathAsync()
         {
+            Console.WriteLine("Entered GetParametersByPathAsync()");
+
             using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())
             {
                 if (client is AmazonSimpleSystemsManagementClient impl)
@@ -72,6 +74,8 @@ namespace Amazon.Extensions.Configuration.SystemsManager.Internal
 
         private async Task<IDictionary<string, string>> GetParameterAsync()
         {
+            Console.WriteLine("Entered GetParameterAsync()");
+
             using (var client = Source.AwsOptions.CreateServiceClient<IAmazonSimpleSystemsManagement>())
             {
                 if (client is AmazonSimpleSystemsManagementClient impl)

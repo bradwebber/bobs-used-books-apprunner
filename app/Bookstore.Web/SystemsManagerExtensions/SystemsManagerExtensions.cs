@@ -167,6 +167,8 @@ namespace Microsoft.Extensions.Configuration
         /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
         public static IConfigurationBuilder AddSystemsManager(this IConfigurationBuilder builder, Action<SystemsManagerConfigurationSource> configureSource)
         {
+            Console.WriteLine("Entered IConfigurationBuilder AddSystemsManager(this IConfigurationBuilder builder, Action<SystemsManagerConfigurationSource> configureSource)");
+
             if (configureSource == null) throw new ArgumentNullException(nameof(configureSource));
 
             var source = new SystemsManagerConfigurationSource();
