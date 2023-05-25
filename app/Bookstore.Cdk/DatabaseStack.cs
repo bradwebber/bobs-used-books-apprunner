@@ -35,7 +35,7 @@ public class DatabaseStack : Stack
             // SQL Server 2017 Express Edition, in conjunction with a db.t2.micro instance type,
             // fits inside the free tier for new accounts
             Engine = DatabaseInstanceEngine.SqlServerEx(new SqlServerExInstanceEngineProps
-            {
+            {                
                 Version = SqlServerEngineVersion.VER_14
             }),
             Port = DatabasePort,
@@ -50,7 +50,7 @@ public class DatabaseStack : Stack
             // As this is a sample app, turn off automated backups to avoid any storage costs
             // of automated backup snapshots. It also helps the stack launch a little faster by
             // avoiding an initial backup.
-            BackupRetention = Duration.Seconds(0)            
+            BackupRetention = Duration.Seconds(0)          
         });
 
         // The secret, in Secrets Manager, holds the auto-generated database credentials. Because
@@ -62,15 +62,15 @@ public class DatabaseStack : Stack
             StringValue = Database.Secret.SecretName            
         });
 
-        var server = Database.Secret.SecretValueFromJson("host").UnsafeUnwrap();
-        var database = Database.Secret.SecretValueFromJson("dbInstanceIdentifier").UnsafeUnwrap();
-        var userId = Database.Secret.SecretValueFromJson("username").UnsafeUnwrap();
-        var password = Database.Secret.SecretValueFromJson("password").UnsafeUnwrap();
+        //var server = Database.Secret.SecretValueFromJson("host").UnsafeUnwrap();
+        //var database = Database.Secret.SecretValueFromJson("dbInstanceIdentifier").UnsafeUnwrap();
+        //var userId = Database.Secret.SecretValueFromJson("username").UnsafeUnwrap();
+        //var password = Database.Secret.SecretValueFromJson("password").UnsafeUnwrap();
 
-        _ = new StringParameter(this, $"{Constants.AppName}ConnectionString", new StringParameterProps
-        {
-            ParameterName = $"/{Constants.AppName}/ConnectionStrings/BookstoreDbDefaultConnection",
-            StringValue = $"Server={server}; Database={database}; User Id={userId}; Password={password};"
-        });
+        //_ = new StringParameter(this, $"{Constants.AppName}ConnectionString", new StringParameterProps
+        //{
+        //    ParameterName = $"/{Constants.AppName}/ConnectionStrings/BookstoreDbDefaultConnection",
+        //    StringValue = $"Server={server}; Database={database}; User Id={userId}; Password={password};"
+        //});
     }
 }
