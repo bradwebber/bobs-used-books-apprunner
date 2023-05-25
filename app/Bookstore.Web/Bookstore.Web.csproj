@@ -2,15 +2,12 @@
 
     <PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<UserSecretsId>b2714bf3-5af7-4b4d-b7a3-23e41acd962b</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="2.1.0" />
         <PackageReference Include="AWS.Logger.AspNetCore" Version="3.3.0" />
-        <PackageReference Include="AWSSDK.AppConfigData" Version="3.7.101.59" />
         <PackageReference Include="AWSSDK.CloudWatchLogs" Version="3.7.2.87" />
-        <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.7" />
-        <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.7.104.35" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
@@ -18,10 +15,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
-        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -33,12 +27,5 @@
       <Folder Include="Controllers\" />
       <Folder Include="wwwroot\css\" />
       <Folder Include="wwwroot\lib\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="..\..\..\..\Temp\aws-dotnet-extensions-configuration-master\aws-dotnet-extensions-configuration-master\icon.png" Link="SystemsManagerExtensions\icon.png">
-        <PackagePath></PackagePath>
-        <Pack>true</Pack>
-      </None>
     </ItemGroup>
 </Project>

@@ -10,13 +10,13 @@ public class NetworkStack : Stack
 
     internal NetworkStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
     {
-        // Create a new vpc spanning two AZs and with public and private subnets
+        // Create a new vpc spanning a single AZ and with public and private subnets
         // to host the application resources
         Vpc = new Vpc(this, $"{Constants.AppName}Vpc", new VpcProps
         {
             IpAddresses = IpAddresses.Cidr("10.0.0.0/16"),
-            // Cap at 2 AZs in case we are deployed to a region with only 2
-            MaxAzs = 2,            
+            // Cap at 1 AZ to optimize for cost
+            MaxAzs = 1, 
             SubnetConfiguration = new[]
             {
                 new SubnetConfiguration
