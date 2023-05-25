@@ -61,16 +61,5 @@ public class DatabaseStack : Stack
             ParameterName = $"/{Constants.AppName}/dbsecretsname",
             StringValue = Database.Secret.SecretName            
         });
-
-        //var server = Database.Secret.SecretValueFromJson("host").UnsafeUnwrap();
-        //var database = Database.Secret.SecretValueFromJson("dbInstanceIdentifier").UnsafeUnwrap();
-        //var userId = Database.Secret.SecretValueFromJson("username").UnsafeUnwrap();
-        //var password = Database.Secret.SecretValueFromJson("password").UnsafeUnwrap();
-
-        //_ = new StringParameter(this, $"{Constants.AppName}ConnectionString", new StringParameterProps
-        //{
-        //    ParameterName = $"/{Constants.AppName}/ConnectionStrings/BookstoreDbDefaultConnection",
-        //    StringValue = $"Server={server}; Database={database}; User Id={userId}; Password={password};"
-        //});
     }
 }
