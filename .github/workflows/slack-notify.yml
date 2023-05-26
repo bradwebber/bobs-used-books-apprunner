@@ -10,45 +10,47 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         with:
             payload: | 
-                "attachments": [
                 {
-                    "color": "#d90000",
-                    "blocks": [
+                    "attachments": [
                     {
-                        "type": "section",
-                        "text": {
-                        "type": "mrkdwn",
-                        "text": "${{ github.workflow }} workflow failed on ${{ env.DEFAULT_BRANCH }} branch in the ${{ github.event.repository.name }} repository!"
-                        }
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "actions",
-                        "elements": [
+                        "color": "#d90000",
+                        "blocks": [
                         {
-                            "type": "button",
+                            "type": "section",
                             "text": {
-                            "type": "plain_text",
-                            "text": "Build",
-                            "emoji": true
-                            },
-                            "url": "${{ env.REPO_URL }}/actions/runs/${{ github.run_id }}"
+                            "type": "mrkdwn",
+                            "text": "${{ github.workflow }} workflow failed on ${{ env.DEFAULT_BRANCH }} branch in the ${{ github.event.repository.name }} repository!"
+                            }
                         },
                         {
-                            "type": "button",
-                            "text": {
-                            "type": "plain_text",
-                            "text": "Commit",
-                            "emoji": true
+                            "type": "divider"
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                "type": "plain_text",
+                                "text": "Build",
+                                "emoji": true
+                                },
+                                "url": "${{ env.REPO_URL }}/actions/runs/${{ github.run_id }}"
                             },
-                            "url": "${{ env.REPO_URL }}/commit/${{ github.sha }}"
+                            {
+                                "type": "button",
+                                "text": {
+                                "type": "plain_text",
+                                "text": "Commit",
+                                "emoji": true
+                                },
+                                "url": "${{ env.REPO_URL }}/commit/${{ github.sha }}"
+                            }
+                            ]
                         }
                         ]
                     }
                     ]
                 }
-                ]
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
