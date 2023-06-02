@@ -24,7 +24,7 @@ namespace Bookstore.Web.Startup
             builder.Services.AddAWSService<IAmazonS3>();
             builder.Services.AddAWSService<IAmazonRekognition>();
 
-            builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration["BookstoreDbDefaultConnection"]));
+            builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("BookstoreDbDefaultConnection")));
             builder.Services.AddSession();
 
             return builder;
